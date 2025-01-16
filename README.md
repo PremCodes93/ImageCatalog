@@ -1,16 +1,28 @@
-# image_listing_app
+# Image Listing App
 
-List images from an api
+A Flutter app that displays a list of images with features like infinite scrolling, error handling, and smooth animations
 
-## Getting Started
+## Prerequisites
 
-This project is a starting point for a Flutter application.
+#### Flutter Version:
+Ensure that you have Flutter version 3.27.2 installed.
 
-A few resources to get you started if this is your first Flutter project:
+#### Run Pub Get:
+```bash
+pub get
+```
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+#### Generate Build Files:
+This project uses build_runner for code generation. Run the following command to build all generated files:
+```bash
+flutter pub run build_runner build --delete-conflicting-outputs
+```
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Environment Configuration:
+The BaseUrl and accessToken are not stored in the repository. They need to be passed during build time via Dart defines.
+
+Create a JSON file with environment-specific values (e.g., key_environment.json) and pass it during build/run.
+
+```bash
+--dart-define-from-file=key_environment.json
+```
