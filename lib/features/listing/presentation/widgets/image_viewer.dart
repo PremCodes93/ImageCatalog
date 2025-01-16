@@ -23,7 +23,7 @@ class ViewImage extends StatelessWidget {
           child: InteractiveViewer(
             panEnabled: true, // Allow panning
             minScale: context.appThemeData.imageViewerStyle.minScale,
-            maxScale: context.appThemeData.imageViewerStyle.maxScale, // Adjust for zoom levels
+            maxScale: context.appThemeData.imageViewerStyle.maxScale,
             child: CachedNetworkImage(
               imageUrl: imageUrl,
               errorWidget: (context, url, error) => const Icon(Icons.error),

@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/errors.dart';
-
 class ImageUtils
 {
-
-
-
   static void showErrorMsg(BuildContext context) async {
     showDialog(
       context: context,

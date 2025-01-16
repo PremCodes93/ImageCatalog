@@ -11,29 +11,31 @@ class SplashPage extends StatefulWidget {
 
 class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
-  late Animation<double> _fadeAnimation;
+  late Animation<double> _opacityAnimation;
+
+  static const int fadeInDuration = 1;
+  static const int fadeOutDuration = 900;
 
   @override
   void initState() {
     super.initState();
-
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 2),
+      duration: Duration(seconds: 1),
     );
-
-    _fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
+    _opacityAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
     );
-
     _controller.forward();
-
     _controller.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
-        Future.delayed(const Duration(seconds: 1), () {
-          if (mounted) {
-            Navigator.of(context).pushReplacementNamed(Routes.listingPage);
-          }
+        Future.delayed(Duration(seconds: fadeInDuration), () {
+          _controller.reverse();
+          Future.delayed(Duration(milliseconds: fadeOutDuration), () {
+            if (mounted) {
+              Navigator.of(context).pushReplacementNamed(Routes.listingPage);
+            }
+          });
         });
       }
     });
@@ -51,7 +53,7 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
       backgroundColor: context.appThemeData.splashStyle.bgColor,
       body: Center(
         child: FadeTransition(
-          opacity: _fadeAnimation,
+          opacity: _opacityAnimation,
           child: Text(
             "Welcome",
             style: context.appThemeData.splashStyle.splashTextStyle,
